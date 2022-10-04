@@ -27,4 +27,4 @@ Steps:
     -  Standardize all professional swing poses after using BlazePose and take the average for the "optimal" swing, or the swing with the least loss from all professional swings.
     -  Split the swing using the 4 key poses mentioned above.
 5.  Compare each splice (from the key poses) of the user's swing to the optimal swing
-    -  
+    -  Give advice based on positional difference. eg. more upward if user's swing is low
