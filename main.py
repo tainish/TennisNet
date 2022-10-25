@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 
 from util.BlazePose import image_pose
+form util.coord_to_mpl import coord_to_mpl
 from util.rmse import rmse
 from util.scaler import scaler
 
@@ -21,27 +22,20 @@ closest_pose_id = 0
 i = 0
 best_score = sys.maxsize # To be minimized
 for pro_pose in pro_pose_norms:
-	score = rmse(pro_pose, user_pose_norm)
-	if score < best_score:
-		best_score = score
-		closest_pose_id = i
+	if i > 5: # Ignore face
+		score = rmse(pro_pose, user_pose_norm)
+		if score < best_score:
+			best_score = score
+			closest_pose_id = i
 
 	i += 1
+
+pro_x, pro_y, pro_z = coord_to_mpl(pro_pose)
+user_x, user_y, user_z = coord_to_mpl(user_pose_norm)
 
 # Plot both poses on the same graph
 fig = plt.figure()
 ax = plt.axes(projection='3d')
 
-ax = plt.axes(projection='3d')
 
-# Data for a three-dimensional line
-zline = np.linspace(0, 15, 1000)
-xline = np.sin(zline)
-yline = np.cos(zline)
-ax.plot3D(xline, yline, zline, 'gray')
-
-# Data for three-dimensional scattered points
-zdata = 15 * np.random.random(100)
-xdata = np.sin(zdata) + 0.1 * np.random.randn(100)
-ydata = np.cos(zdata) + 0.1 * np.random.randn(100)
 ax.scatter3D(xdata, ydata, zdata, c=zdata, cmap='Greens');

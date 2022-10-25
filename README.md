@@ -8,6 +8,7 @@ An application of BlazePose on tennis forms.
 	-  Alternatively stop the swing in the impact position and take a picture.
 2.  Upload images of the impact pose into the `input/` folder and delete pre-existing images.
 3.  Run `main.py`.
+4.  The green plot is the professional and the red plot is the user.
 	
 
 # Development
