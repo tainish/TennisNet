@@ -24,6 +24,7 @@ def image_pose(folder_path='', debug=False, verbose=False, plot_model=False):
 
 	Return:
 		array of keypoints, each an array of coordinates
+		array of image file paths in whatever order the program read them
 	
 		additionally writes to output file in ../test/output/[file_name] with a
 		copy of the original video with pose annotations on every frame
@@ -41,6 +42,7 @@ def image_pose(folder_path='', debug=False, verbose=False, plot_model=False):
 			IMAGE_FILES.append(filename)
 	
 	image_results = []
+	image_files = []
 
 	BG_COLOR = (192, 192, 192) # gray
 	with mp_pose.Pose(
@@ -50,6 +52,8 @@ def image_pose(folder_path='', debug=False, verbose=False, plot_model=False):
 		min_detection_confidence=0.5) as pose:
 		for idx, file in enumerate(IMAGE_FILES):
 			image = cv2.imread(file)
+			image_files.append(file)
+
 			image_height, image_width, _ = image.shape
 			# Convert the BGR image to RGB before processing.
 			results = pose.process(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
@@ -61,7 +65,7 @@ def image_pose(folder_path='', debug=False, verbose=False, plot_model=False):
 					continue
 				
 				print(
-					f'Nose coordinates: ('
+					f'Right shoulder coordinates: ('
 					f'{results.pose_landmarks.landmark[12].x * image_width}, ' # 12 maps to the right shoulder landmark
 					f'{results.pose_landmarks.landmark[12].y * image_height},'
 					f'{results.pose_landmarks.landmark[12].z})'
@@ -96,4 +100,4 @@ def image_pose(folder_path='', debug=False, verbose=False, plot_model=False):
 					mp_drawing.plot_landmarks(
 						results.pose_world_landmarks, mp_pose.POSE_CONNECTIONS)
 
-	return image_results
+	return image_results, image_files
