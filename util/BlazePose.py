@@ -7,14 +7,20 @@ mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_pose = mp.solutions.pose
 
-def image_pose(in_folder_path='', debug=False):
+def image_pose(folder_path='', debug=False, verbose=False, plot_model=False):
 	'''
 	Annotates the pose of the player onto each frame of the video input.
 
 	Args:
-		video file name: video file path is hardcoded to be ../test/input/
-	    so only file name is necessary;
-						 file extension must be cv2 supported
+		folder_path: video file should be in input folder relative to folder_path;
+					 file extension of the video file must be cv2 supported
+
+		debug: output coordinates of an example landmark and write
+			   annotated images to output file
+
+		verbose: print landmark to id mapping
+
+		plot_model: display 3d model of entire pose
 
 	Return:
 		array of keypoints, each an array of coordinates
@@ -25,8 +31,8 @@ def image_pose(in_folder_path='', debug=False):
 
 	# Supported image types
 	IMAGE_EXT = ['.png', '.jpg', '.jpeg', '.avi']
-	input_file = in_folder_path + 'input\\'
-	output_file = in_folder_path + 'output\\'
+	input_file = folder_path + 'input\\'
+	output_file = folder_path + 'output\\'
 
 	IMAGE_FILES = []
 	# Find all images in folder
@@ -56,12 +62,14 @@ def image_pose(in_folder_path='', debug=False):
 				
 				print(
 					f'Nose coordinates: ('
-					f'{results.pose_landmarks.landmark[mp_pose.PoseLandmark.NOSE].x * image_width}, '
-					f'{results.pose_landmarks.landmark[mp_pose.PoseLandmark.NOSE].y * image_height})'
+					f'{results.pose_landmarks.landmark[12].x * image_width}, ' # 12 maps to the right shoulder landmark
+					f'{results.pose_landmarks.landmark[12].y * image_height},'
+					f'{results.pose_landmarks.landmark[12].z})'
 				)
 
-				# Names of pose landmarks (the nodes it detects) and id to landmark mapping
-				print(vars(mp_pose.PoseLandmark))
+				if verbose:
+					# Names of pose landmarks (the nodes it detects) and id to landmark mapping
+					print(vars(mp_pose.PoseLandmark))
 
 				annotated_image = image.copy()
 
@@ -84,7 +92,8 @@ def image_pose(in_folder_path='', debug=False):
 				cv2.imwrite(output_file + os.path.basename(file), annotated_image)
 
 				# Plot pose world landmarks to see 3d model
-				#mp_drawing.plot_landmarks(
-				#	results.pose_world_landmarks, mp_pose.POSE_CONNECTIONS)
+				if plot_model:
+					mp_drawing.plot_landmarks(
+						results.pose_world_landmarks, mp_pose.POSE_CONNECTIONS)
 
 	return image_results

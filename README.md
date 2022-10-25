@@ -6,8 +6,8 @@ An application of BlazePose on tennis forms.
 
 1.  Record a video of a swing such that the camera is pointing towards the left side of the court from the right side with the center of view in line with the player (slo-mo is recommended for higher fps). Extract the frame where the racquet hits the ball and save it as an image.
 	-  Alternatively stop the swing in the impact position and take a picture.
-2.  Upload images of the impact pose into the `test/input/` folder.
-3.  Run the program.
+2.  Upload images of the impact pose into the `input/` folder and delete pre-existing images.
+3.  Run `main.py`.
 	
 
 # Development
@@ -33,6 +33,7 @@ An application of BlazePose on tennis forms.
 
 1.  BlazePose can be used to obtain the basic pose of the user's swing.
     -  BlazePose, unlike other pose estimation models, can also detect, albeit still quite inconsistent, the depth of each joint. To fix the inconsistency, we may input bone lengths and use a simple least squares optimization in an attempt to make the depth more consistent and accurate.
+	-  See https://google.github.io/mediapipe/solutions/pose.html
 2.  With all three coordinates of each joint, a complete 3D model can be made and we can standardize the models by scaling based on upper body length (it seems to have the most accurate depth position).
 3.  Do a frame by frame detection of the ready pose, preparation pose, impact pose, and end pose, and record all frames where the detection model detects any of the poses. Find all instances of ready pose, preparation pose, impact pose, and end pose in a row and record those frames as an array of quadruples.
 4.  For a little more setup before moving on, we need a ground truth swing:

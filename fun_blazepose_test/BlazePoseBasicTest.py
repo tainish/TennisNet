@@ -6,9 +6,7 @@ mp_pose = mp.solutions.pose
 
 '''
 	Test whether the mediapipe BlazePose model is working properly
-	with the webcam input method.
-
-	TODO: Use pytest to create an actual unit test.
+	with the webcam input method. (Not really an actual test)
 '''
 
 # For webcam input:
