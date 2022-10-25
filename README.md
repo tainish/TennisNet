@@ -7,7 +7,7 @@ An application of BlazePose on tennis forms.
 1.  Record a video of a swing such that the camera is pointing towards the left side of the court from the right side with the center of view in line with the player (slo-mo is recommended for higher fps). Extract the frame where the racquet hits the ball and save it as an image.
 	-  Alternatively stop the swing in the impact position and take a picture.
 2.  Upload images of the impact pose into the `input/` folder and delete pre-existing images.
-3.  Run `main.py`.
+3.  Install dependencies, then run `main.py`.
 4.  The green plot is the professional and the red plot is the user.
 5.	If the actual image of the professional model is desired, there should have been an id printed into command prompt, 
 	
