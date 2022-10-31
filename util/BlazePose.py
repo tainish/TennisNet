@@ -7,7 +7,7 @@ mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_pose = mp.solutions.pose
 
-def image_pose(folder_path='', debug=False, verbose=False, plot_model=False):
+def image_pose(folder_path='.\\', debug=False, verbose=False, plot_model=False):
 	'''
 	Annotates the pose of the player onto each frame of the video input.
 
