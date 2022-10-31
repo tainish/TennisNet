@@ -10,16 +10,16 @@ from util.coord_to_mpl import coord_to_mpl
 from util.rmse import rmse
 from util.scaler import scaler
 
-assert image_pose('debug\\'), "Either debug\\ doesn't exist or image_pose isn't working"
+assert image_pose('debug/'), "Either debug\\ doesn't exist or image_pose isn't working"
 	
-pro_results, _ = image_pose('ground_truth\\')
+pro_results, _ = image_pose('ground_truth/')
 
-assert pro_results, "No file path ground_truth\\"
+assert pro_results, "No file path ground_truth/"
 assert len(pro_results) == 100, "Images missing in ground_truth"
 
 user_results, _ = image_pose(debug=True)
 
-assert user_results, "No images found in input\\ folder"
+assert user_results, "No images found in input/ folder"
 assert scaler(user_results[0]), "scaler function unsuccessful"
 
 # rmse tests

@@ -10,7 +10,7 @@ from util.scaler import scaler
 
 # Obtain pose results of user image and ground_truth images
 user_poses, _ = image_pose()
-pro_poses, pro_files = image_pose('ground_truth\\')
+pro_poses, pro_files = image_pose('ground_truth/')
 
 # Normalize pose results
 user_pose_norm = scaler(user_poses[0])

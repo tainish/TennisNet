@@ -7,7 +7,7 @@ mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_pose = mp.solutions.pose
 
-def image_pose(folder_path='.\\', debug=False, verbose=False, plot_model=False):
+def image_pose(folder_path='./', debug=False, verbose=False, plot_model=False):
 	'''
 	Annotates the pose of the player onto each frame of the video input.
 
@@ -32,8 +32,8 @@ def image_pose(folder_path='.\\', debug=False, verbose=False, plot_model=False):
 
 	# Supported image types
 	IMAGE_EXT = ['.png', '.jpg', '.jpeg', '.avi']
-	input_file = folder_path + 'input\\'
-	output_file = folder_path + 'output\\'
+	input_file = folder_path + 'input/'
+	output_file = folder_path + 'output/'
 
 	IMAGE_FILES = []
 	# Find all images in folder
