@@ -8,8 +8,9 @@ from util.coord_to_mpl import coord_to_mpl
 from util.rmse import rmse
 from util.scaler import scaler
 from upload import upload
+import matplotlib.image as mpimg 
 
-#HERE for upload capabilities
+# Here is upload
 upload()
 
 # Obtain pose results of user image and ground_truth images
@@ -93,4 +94,6 @@ for segment in connected_landmarks:
 
 plt.xlabel("x")
 plt.ylabel("y")
+
 plt.show()
+
