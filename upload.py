@@ -1,7 +1,8 @@
 import PySimpleGUI as sg
 from PIL import Image
 from video_process import split_frames
-
+import cv2 as cv
+from record import webcam
 
 def upload():
     sg.theme("GreenTan")
@@ -11,7 +12,11 @@ def upload():
          [sg.Text("")], 
          [sg.Text("OR:")], 
          [sg.Text("")], 
-         [[sg.Text("Upload an AVI Video: "), sg.FileBrowse(key="user_pose_vid", file_types=(("AVI Video", "*.avi"),))], [sg.Button("Send Video")]]
+         [[sg.Text("Upload an AVI Video: "), sg.FileBrowse(key="user_pose_vid", file_types=(("AVI Video", "*.avi"),))], [sg.Button("Send Video")]],
+         [sg.Text("")], 
+         [sg.Text("OR:")], 
+         [sg.Text("")], 
+         [[sg.Button("Record Video")]]
          ]
 
     window = sg.Window(title="TennisNet - Pose Analysis", layout=layout, margins=(50, 50))
@@ -24,6 +29,10 @@ def upload():
         elif event == "Send Video" and values["user_pose_vid"]:
             split_frames(values["user_pose_vid"])
             break
+        elif event == "Record Video":
+            webcam()
+            pass
+           
         elif event == sg.WIN_CLOSED:
             break
     
