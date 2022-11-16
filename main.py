@@ -51,16 +51,16 @@ pro_x, pro_y, pro_z = coord_to_mpl(pro_pose_norms[closest_pose_id][11:])
 user_x, user_y, user_z = coord_to_mpl(user_pose_norm[11:])
 
 # Plot both poses on the same graph
-#fig = plt.figure()
-
-fig, ax = plt.subplots(2,2)
+fig = plt.figure()
 
 #attempt to plot images side by side for view comparison
-ax[0, 0] = plt.axes(projection='3d')
+#fig, ax = plt.subplots()
+
+ax = plt.axes(projection='3d')
 
 # Switch y and z and make z (in mpl) negative to convert from BlazePose coordinates to MatPlotLib coordinates
-ax[0, 0].scatter3D(pro_x, pro_z, np.negative(pro_y), c=pro_z, cmap='Greens')
-ax[0, 0].scatter3D(user_x, user_z, np.negative(user_y), c=user_z, cmap='Reds')
+ax.scatter3D(pro_x, pro_z, np.negative(pro_y), c=pro_z, cmap='Greens')
+ax.scatter3D(user_x, user_z, np.negative(user_y), c=user_z, cmap='Reds')
 
 # Connected segments in a pose ignoring face
 connected_landmarks = [[11, 12],
@@ -93,14 +93,11 @@ connected_landmarks = [[11, 12],
 connected_landmarks = [[s[0] - 11, s[1] - 11] for s in connected_landmarks] # Adjust ids due to removed face nodes
 
 for segment in connected_landmarks:
-	ax[0, 0].plot([pro_x[segment[0]], pro_x[segment[1]]], [pro_z[segment[0]], pro_z[segment[1]]], [-pro_y[segment[0]], -pro_y[segment[1]]], c='black')
-	ax[0, 0].plot([user_x[segment[0]], user_x[segment[1]]], [user_z[segment[0]], user_z[segment[1]]], [-user_y[segment[0]], -user_y[segment[1]]], c='black')
+	ax.plot([pro_x[segment[0]], pro_x[segment[1]]], [pro_z[segment[0]], pro_z[segment[1]]], [-pro_y[segment[0]], -pro_y[segment[1]]], c='black')
+	ax.plot([user_x[segment[0]], user_x[segment[1]]], [user_z[segment[0]], user_z[segment[1]]], [-user_y[segment[0]], -user_y[segment[1]]], c='black')
 
 plt.xlabel("x")
 plt.ylabel("y")
-
-ax[1, 0] = plt.imshow(mpimg.imread(user_poses[0]))
-ax[1, 1] = plt.imshow(mpimg.imread(pro_files[closest_pose_id]))
 
 
 plt.show()
