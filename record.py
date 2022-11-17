@@ -26,8 +26,6 @@ def webcam():
             break
     # close the already opened camera
     vid_capture.release()
-    # close the already opened file
     output.release()
 
-    #there's something with the split_frames thing in the pipeline
-    #split_frames(vid_path)
+    split_frames(vid_path)

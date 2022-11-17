@@ -25,16 +25,19 @@ def upload():
         event, values = window.read()
         if event == "Send Image" and values["user_pose_img"] is not None:
             Image.open(values["user_pose_img"]).save("input/user_pose.jpg")
+            window.close()
             break
         elif event == "Send Video" and values["user_pose_vid"]:
+            window.close()
             split_frames(values["user_pose_vid"])
             break
         elif event == "Record Video":
+            window.close()
             webcam()
             pass
            
         elif event == sg.WIN_CLOSED:
+            window.close()
             break
     
-    window.close()
 

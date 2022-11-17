@@ -97,9 +97,6 @@ for segment in connected_landmarks:
 	ax[1].plot([pro_x[segment[0]], pro_x[segment[1]]], [pro_z[segment[0]], pro_z[segment[1]]], [-pro_y[segment[0]], -pro_y[segment[1]]], c='black')
 	ax[1].plot([user_x[segment[0]], user_x[segment[1]]], [user_z[segment[0]], user_z[segment[1]]], [-user_y[segment[0]], -user_y[segment[1]]], c='black')
 
-ax[1].set_xticks([])
-ax[1].set_yticks([])
-
 ax[0].imshow(Image.open(user_files[0]))
 ax[0].set_title("User Pose")
 ax[0].set_xlabel("Red Points")

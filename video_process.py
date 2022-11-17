@@ -10,7 +10,7 @@ def split_frames(video):
         if success == False:
             break
         #writes each frame into the input folder
-        cv2.imwrite("input/frame_"+str(frame_n)+".png", frame)
+        cv2.imwrite("temp/frame_"+str(frame_n)+".png", frame)
         frame_n+=1
 
     capture.release()
