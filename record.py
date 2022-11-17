@@ -17,7 +17,7 @@ def webcam():
         # Capture each frame of webcam video
         ret,frame = vid_capture.read()
 
-        cv2.imshow("Swing Capture", frame)
+        cv2.imshow("Press X to Stop Recording", frame)
         if ret: 
             output.write(frame)
 
