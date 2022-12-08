@@ -7,7 +7,7 @@ mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_pose = mp.solutions.pose
 
-def image_pose(folder_path='.\\', debug=False, verbose=False, plot_model=False):
+def image_pose(folder_path='./', debug=False, verbose=False, plot_model=False):
 	'''
 	Annotates the pose of the player onto each frame of the video input.
 
@@ -32,8 +32,8 @@ def image_pose(folder_path='.\\', debug=False, verbose=False, plot_model=False):
 
 	# Supported image types
 	IMAGE_EXT = ['.png', '.jpg', '.jpeg', '.avi']
-	input_file = folder_path + 'input\\'
-	output_file = folder_path + 'output\\'
+	input_file = folder_path + 'input/'
+	output_file = folder_path + 'output/'
 
 	IMAGE_FILES = []
 	# Find all images in folder
@@ -93,7 +93,7 @@ def image_pose(folder_path='.\\', debug=False, verbose=False, plot_model=False):
 					landmark_drawing_spec=mp_drawing_styles.get_default_pose_landmarks_style())
 
 				# Write image to file for debugging
-				cv2.imwrite(output_file + os.path.basename(file), annotated_image)
+				cv2.imwrite(output_file + os.path.basename(file), annotated_image) #don't thin that this file write is working... my output folder still has Taiga's original test image
 
 				# Plot pose world landmarks to see 3d model
 				if plot_model:
