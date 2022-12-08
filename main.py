@@ -11,8 +11,8 @@ from util.scaler import scaler
 from upload import upload
 import matplotlib.image as mpimg 
 
-# Here is upload
-#upload()
+# Here is upload (normal tkinter deprecated on mac)
+# upload()
 
 # Obtain pose results of user image and ground_truth images
 user_poses, user_files = image_pose()
