@@ -93,7 +93,7 @@ def image_pose(folder_path='./', debug=False, verbose=False, plot_model=False):
 					landmark_drawing_spec=mp_drawing_styles.get_default_pose_landmarks_style())
 
 				# Write image to file for debugging
-				cv2.imwrite(output_file + os.path.basename(file), annotated_image)
+				cv2.imwrite(output_file + os.path.basename(file), annotated_image) #don't thin that this file write is working... my output folder still has Taiga's original test image
 
 				# Plot pose world landmarks to see 3d model
 				if plot_model:
