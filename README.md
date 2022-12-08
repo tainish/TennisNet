@@ -4,6 +4,8 @@ An application of BlazePose on tennis forms.
 
 ### Usage:
 
+Go to macOS branch for mac M1 users.
+
 1.  Record a video of a swing such that the camera is pointing towards the left side of the court from the right side with the center of view in line with the player (slo-mo is recommended for higher fps). Extract the frame where the racquet hits the ball and save it as an image.
 	-  Alternatively stop the swing in the impact position and take a picture.
 2.  Upload images of the impact pose into the `input/` folder and delete pre-existing images.
