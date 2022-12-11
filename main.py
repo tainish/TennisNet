@@ -1,25 +1,39 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
+import matplotlib.image as mpimg 
 from mpl_toolkits import mplot3d
 import sys
+
+from UI_util.webcam import get_webcam
 
 from util.BlazePose import image_pose
 from util.coord_to_mpl import coord_to_mpl
 from util.rmse import rmse
 from util.scaler import scaler
+
 from upload import upload
-import matplotlib.image as mpimg 
 
 # Here is upload (normal tkinter deprecated on mac)
 # upload()
 
-# Obtain pose results of user image and ground_truth images
-user_poses, user_files = image_pose()
+# Capture image from webcam
+cam_capture = get_webcam()
+if not cam_capture:
+	user_poses, user_files = image_pose()
+else:
+	user_poses, user_files = image_pose(cam_capture)
+
+# Obtain pose results of ground_truth images
 pro_poses, pro_files = image_pose('ground_truth/')
 
 # Normalize pose results
-user_pose_norm = scaler(user_poses[0])
+try:
+	user_pose_norm = scaler(user_poses[0])
+except: # For when the model couldn't detect the user's pose
+	print("Couldn't detect user pose!")
+	sys.exit()
+
 pro_pose_norms = []
 image_num = 1
 for pro_pose in pro_poses:

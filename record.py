@@ -2,9 +2,10 @@ import cv2
 from video_process import split_frames
 
 def webcam():
+    print("STARTING WEBCAM\n")
     #Capture video from webcam
     vid_path = "recording/cam_video.avi"
-    vid_capture = cv2.VideoCapture(0)
+    vid_capture = cv2.VideoCapture(-1)
     vid_cod = cv2.VideoWriter_fourcc('M', 'J', 'P', 'G')
 
     frame_width = int(vid_capture.get(3))

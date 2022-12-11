@@ -1,4 +1,6 @@
 '''
+	Automatically runs unit_test everytime a git push is requested and prevents code breaking
+	
 	Description for each test can be found in the error message next to each assert line
 '''
 
