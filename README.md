@@ -6,12 +6,22 @@ An application of BlazePose on tennis forms.
 
 Go to macOS branch for mac M1 users.
 
+#### Webcam capture
+
+1.  Install dependencies in a virtual environment with `pip install -r requirements.txt`, then run `main.py`.
+2.  Do a swing and stop in the impact position once the webcam capture pops up and take a picture by pressing 'q'.
+3.  The green plot is the professional and the red plot is the user, and images of the user and matching pro swings are displayed.
+4.	If the actual image of the professional model is desired, there should have been an id printed into command prompt.
+
+#### Image upload
+
 1.  Record a video of a swing such that the camera is pointing towards the left side of the court from the right side with the center of view in line with the player (slo-mo is recommended for higher fps). Extract the frame where the racquet hits the ball and save it as an image.
 	-  Alternatively stop the swing in the impact position and take a picture.
 2.  Upload images of the impact pose into the `input/` folder and delete pre-existing images.
 3.  Install dependencies in a virtual environment with `pip install -r requirements.txt`, then run `main.py`.
-4.  The green plot is the professional and the red plot is the user.
-5.	If the actual image of the professional model is desired, there should have been an id printed into command prompt, 
+4.  Press 'c' when the webcam pops up.
+5.  The green plot is the professional and the red plot is the user, and images of the user and matching pro swings are displayed.
+6.	If the actual image of the professional model is desired, there should have been an id printed into command prompt.
 	
 
 # Development
@@ -53,16 +63,16 @@ Go to macOS branch for mac M1 users.
 
 Only gives analysis for key poses rather than the full swing
 
-1.  BlazePose can be used to obtain the basic pose of a swing.
+1.  UI for the option to do webcam capture.
+2.  BlazePose can be used to obtain the basic pose of a swing.
     -  BlazePose, unlike other pose estimation models, can also detect, albeit still quite inconsistent, the depth of each joint. To fix the inconsistency, we may input bone lengths and use a simple least squares optimization in an attempt to make the depth more consistent and accurate.
-2.  We need a ground truth swing:
-    -  Standardize all professional swing poses after using BlazePose and take the average for the "optimal" swing, or the swing with the least loss from all professional swings.
-    -  Mark 4 key poses for all swings: ready pose, preparation pose, impact pose, and end pose; use a detection model and train using this dataset to detect these key poses
-3.  With all three coordinates of each joint, a complete 3D model can be made.
-    -  Detect 4 key poses: ready pose, preparation pose, impact pose, and end pose using the detection model
-4.  Compare key poses of the user's swing and professional swing, then show the difference between the two for analysis.
+3.  We need a ground truth swing:
+    -  Collect impact poses of professional swings
+4.  With all three coordinates of each joint, a complete 3D model can be made.
+    -  Detect impact pose of professional swings with BlazePose
+5.  Compare key poses of the user's swing and professional swing, then show the difference between the two for analysis.
 
-##### What I'm probably going to achieve
+##### What I'm probably going to achieve (pre mid)
 
 Only gives analysis for one pose (impact with the ball)
 
