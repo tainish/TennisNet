@@ -14,6 +14,7 @@ def get_webcam():
 
     win_name = 'Press q to take a picture'
 
+    # Open webcam
     vid = cv2.VideoCapture(0)
 
     while(True):
@@ -32,7 +33,11 @@ def get_webcam():
 
     vid.release()
     cv2.destroyWindow(win_name)
-    file_path = './recording'
-    image_path = file_path + '/input/frame.jpg'
+
+    # Save frame
+    file_path = 'recording/'
+    image_path = file_path + 'input/frame.jpg'
     cv2.imwrite(image_path, frame)
+    print("Image saved in {}".format(file_path + 'input/frame.jpg'))
+
     return file_path

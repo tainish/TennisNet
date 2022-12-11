@@ -22,7 +22,7 @@ cam_capture = get_webcam()
 if not cam_capture:
 	user_poses, user_files = image_pose()
 else:
-	user_poses, user_files = image_pose(cam_capture)
+	user_poses, user_files = image_pose(cam_capture, debug=True)
 
 # Obtain pose results of ground_truth images
 pro_poses, pro_files = image_pose('ground_truth/')
